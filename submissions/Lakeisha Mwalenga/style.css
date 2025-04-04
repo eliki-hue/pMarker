@@ -1,0 +1,24 @@
+#header{
+    background-image: url("delANI.PNG");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: aliceblue;
+    padding-top: 17%;
+    font-family:'Gabriela', serif ;
+    }
+    
+    }
+    #about{
+        text-align: center;
+    }
+    #services{
+        background-image: url("TECKNET_MOUSE.png");
+        height:35vh;
+        text-align: center;
+    }
+    

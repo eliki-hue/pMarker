@@ -1,0 +1,271 @@
+Student: Aayan Sanjay
+Score: 60/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, p.
+ - Has learned how to create a form with elements: input, button, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, nav.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin, color.
+
+==================================================
+
+Student: abraham_kidiffu
+Score: 21/100
+
+✅ **What the student has learned and done well:**
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, h1, p, nav.
+ - Has not yet added a form to their project.
+ - Needs to apply missing CSS properties: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+==================================================
+
+Student: Adrian_Karoki
+Score: 95/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, p, img.
+ - Has learned how to create a form with elements: input, label, button.
+ - Applied CSS styles correctly, including: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+
+==================================================
+
+Student: AnnaLisa Muthoni
+Score: 42/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, p, img.
+ - Has learned how to create a form with elements: input, label.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+==================================================
+
+Student: Ashley Lobo
+Score: 62/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, p.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin.
+
+==================================================
+
+Student: Carrie Tiffany
+Score: 47/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, p, img.
+ - Has learned how to create a form with elements: input, label.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+==================================================
+
+Student: Garima Jagdev
+Score: 90/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, p, img.
+ - Has learned how to create a form with elements: input, button, label.
+ - Applied CSS styles correctly, including: background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Needs to apply missing CSS properties: font-family.
+
+==================================================
+
+Student: Gauri Patel
+Score: 47/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, p, img.
+ - Has learned how to create a form with elements: input, label.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+==================================================
+
+Student: jayden muchiri
+Score: 92/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, p, img.
+ - Has learned how to create a form with elements: input, button.
+ - Applied CSS styles correctly, including: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Form is missing elements: label.
+
+==================================================
+
+Student: Kaitlyn Mugendi
+Score: 52/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, p, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin, color.
+
+==================================================
+
+Student: Lakeisha Mwalenga
+Score: 62/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: font-family, background-image, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, p, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: background-color, padding, margin.
+
+==================================================
+
+Student: Lanisha Nyaboke
+Score: 21/100
+
+✅ **What the student has learned and done well:**
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, h1, p, nav.
+ - Has not yet added a form to their project.
+ - Needs to apply missing CSS properties: font-family, background-color, background-image, padding, margin, display, align-items, color, justify-content.
+
+==================================================
+
+Student: Moses Ngaita
+Score: 74/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, p, img.
+ - Has learned how to create a form with elements: input.
+ - Applied CSS styles correctly, including: background-color, padding, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Form is missing elements: label, button.
+ - Needs to apply missing CSS properties: font-family, background-image, margin.
+
+==================================================
+
+Student: Nathan Nguny
+Score: 67/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, img, p.
+ - Has learned how to create a form with elements: input, button.
+ - Applied CSS styles correctly, including: background-image, display, align-items, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Form is missing elements: label.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin, color.
+
+==================================================
+
+Student: Nathan Ngunyi
+Score: 67/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, h2, img, p.
+ - Has learned how to create a form with elements: input, button.
+ - Applied CSS styles correctly, including: background-image, display, align-items, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: nav.
+ - Form is missing elements: label.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin, color.
+
+==================================================
+
+Student: Sayed Aqueel
+Score: 67/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, p, img.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin.
+
+==================================================
+
+Student: Shani Karimi
+Score: 62/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1, p.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, color, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin.
+
+==================================================
+
+Student: Shantelle Deanna
+Score: 52/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, p, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin, color.
+
+==================================================
+
+Student: Victor Madaraka
+Score: 52/100
+
+✅ **What the student has learned and done well:**
+ - Understands basic HTML structure, using: h1.
+ - Has learned how to create a form with elements: input, label.
+ - Applied CSS styles correctly, including: background-image, display, align-items, justify-content.
+
+❌ **Areas for improvement:**
+ - Needs to include missing HTML elements: h2, img, p, nav.
+ - Form is missing elements: button.
+ - Needs to apply missing CSS properties: font-family, background-color, padding, margin, color.
+
+==================================================
+

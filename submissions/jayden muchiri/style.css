@@ -1,0 +1,128 @@
+body{
+    margin: 0px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+h2{
+    text-align: center;
+    size: 500px;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    line-height: 1.2; 
+}
+
+.header{
+    background-image: url("images/home.png") ;
+    font-family: sans-serif;
+    height: 100vh;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    color: rgb(255, 255, 255);
+    font-family:'Gabriela', serif;
+}
+.about{
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 40px;
+    font-family: 'Gabriela', serif;
+}
+
+.services{
+    text-align: center;
+    background-image: url("images/s_image.png");
+    color: white;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Copse', serif;
+    font-size: 20px;
+    padding-top: 10%;
+    padding-bottom: 7%;
+}
+.what-we-do{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Quattrocento', serif;
+    text-align: center;
+    font-family: 'Gabriela', serif;
+}
+.what-we-do .rows {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+.form{
+    background-image: url("images/c-image.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    display: block;
+    unicode-bidi: isolate;
+    text-align: center;
+}
+.text{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.form #name,#email,#message{
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background: transparent;
+}
+.form  textarea {
+    
+    width: 50%; 
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px; 
+    margin-bottom: 16px;
+    resize: vertical 
+}
+
+.form h2 {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-family: 'Gabriela', serif;
+}
+form #submit{
+    background-color: #2874c5;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(133, 128, 128);
+}     
+#header{
+    background-image: url("delani head.jpeg");
+    height: 600px;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}

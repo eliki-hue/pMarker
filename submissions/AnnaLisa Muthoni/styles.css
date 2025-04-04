@@ -1,0 +1,60 @@
+#intro{
+    height: 660px;
+    width: 1340px;
+    background-image: url("https://delanie-studio.netlify.app/images/backgrounds/h_img.jpg");
+    background-repeat: no-repeat;
+    background-size:1340px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+#t{
+    font-size: 200%;
+}
+#sub{
+    font-size: 300%;
+}
+#logo{
+    width: 80px;
+    height: 80px;
+}
+#about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 130%;
+}
+#services{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 400px;
+    width: 1340px;
+    background-image: url("https://delanie-studio.netlify.app/images/backgrounds/s_image.jpg");
+    color: white;
+    font-size: 130%;
+}
+#form{
+    background-image: url("https://delanie-studio.netlify.app/images/backgrounds/c_image.jpg");
+    background-size: cover;
+    height: 500px;
+    width: 1340px;
+    color: white;
+    margin-top: 1cm;
+}
+#forms{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 3cm;
+
+}
+#nm{
+    
+}

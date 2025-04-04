@@ -1,0 +1,31 @@
+#header{
+    background-image: url("delani.png");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#about{
+    text-align: center;
+    font-size: larger;
+}
+
+#services{
+   
+    background-image: url(studios\ delani.png);
+    background-position: center;
+    background-size: cover;
+    height: 50vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: x-large;
+}
+
+      
+
+
+
+

@@ -1,0 +1,26 @@
+#header{
+    background-image: url(kys.png.png);
+    height: 90vh; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#header2{ text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#header3{ 
+    background-image: url(keyboard.png);
+    height: 90vh;
+background-repeat: no-repeat; 
+background-size: cover;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
+}

@@ -1,0 +1,59 @@
+#header{
+    background-image: url("delani page 1.jpg");
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-size: larger;
+}
+#services{
+    background-image: url("services.jpg");
+    height: 50vh;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-size: larger;
+}
+#About{
+    text-align: center;
+}
+#image{
+    display: flex;
+    justify-content: space-evenly;
+}
+#what{
+    text-align: center;
+    height: 20vh;
+}
+#portfolio{
+    text-align: center;
+}
+#p2 img{
+    width: 300px;
+}
+#form{
+    background-image:url("registaration tag.jpg") ;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+form{
+    padding: 40px;
+    background-color: grey;
+    width: 300px;
+    margin: 40px;
+    color:black;
+    opacity: 0.5;
+    
+}
+button{
+   background-color:rgb(199, 30, 30);
+    color: azure;
+    width: 100px;
+    height: 30px;
+}
