@@ -1,9 +1,9 @@
 import os
-from reportlab.lib.pagesizes import letter, A4, landscape, portrait
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
+from reportlab.lib.pagesizes import A4, portrait
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
-from reportlab.lib.units import inch, mm
+from reportlab.lib.units import mm, inch
 import re
 from datetime import datetime
 
@@ -47,25 +47,12 @@ def parse_student_data(text_content):
     
     return students
 
-def create_student_report(student, filename, logo_path, report_meta):
+def create_coding_report(student, filename, report_meta):
     """
-    Create a PDF report for a single student with professional header
-    report_meta should contain: {'page_size': 'A4', 'orientation': 'portrait', 
-                                'term': '1', 'year': '2023', 'class': 'Grade 5'}
+    Create a coding progress report PDF matching the music report format
     """
-    # Set page size and orientation
-    page_size = {
-        'letter': letter,
-        'A4': A4
-    }.get(report_meta.get('page_size', 'A4'), letter)
-    
-    orientation = report_meta.get('orientation', 'portrait')
-    if orientation == 'landscape':
-        page_size = landscape(page_size)
-    else:
-        page_size = portrait(page_size)
-    
-    doc = SimpleDocTemplate(filename, pagesize=page_size,
+    # Set page size to A4 portrait
+    doc = SimpleDocTemplate(filename, pagesize=portrait(A4),
                           leftMargin=20*mm, rightMargin=20*mm,
                           topMargin=15*mm, bottomMargin=15*mm)
     story = []
@@ -73,18 +60,7 @@ def create_student_report(student, filename, logo_path, report_meta):
     # Define styles
     styles = getSampleStyleSheet()
     
-    # School header style
-    school_style = ParagraphStyle(
-        'SchoolHeader',
-        parent=styles['Heading1'],
-        fontSize=14,
-        alignment=1,
-        spaceAfter=6,
-        textColor=colors.HexColor('#2c3e50'),
-        fontName='Helvetica-Bold'
-    )
-    
-    # Report title style
+    # Title style
     title_style = ParagraphStyle(
         'Title',
         parent=styles['Heading1'],
@@ -106,139 +82,163 @@ def create_student_report(student, filename, logo_path, report_meta):
         fontName='Helvetica'
     )
     
-    # Section header style
-    section_style = ParagraphStyle(
-        'Section',
-        parent=styles['Heading2'],
-        fontSize=12,
-        spaceBefore=12,
-        spaceAfter=6,
-        textColor=colors.HexColor('#16a085'),
+    # Table header style
+    table_header_style = ParagraphStyle(
+        'TableHeader',
+        parent=styles['Normal'],
+        fontSize=10,
+        textColor=colors.black,
         fontName='Helvetica-Bold'
     )
     
-    # Bullet point style
+    # Table content style
+    table_content_style = ParagraphStyle(
+        'TableContent',
+        parent=styles['Normal'],
+        fontSize=10,
+        textColor=colors.black,
+        fontName='Helvetica'
+    )
+    
+    # Section style
+    section_style = ParagraphStyle(
+        'Section',
+        parent=styles['Normal'],
+        fontSize=10,
+        textColor=colors.black,
+        fontName='Helvetica-Bold',
+        spaceBefore=12,
+        spaceAfter=6
+    )
+    
+    # Bullet style
     bullet_style = ParagraphStyle(
         'Bullet',
         parent=styles['Normal'],
         fontSize=10,
+        textColor=colors.black,
+        fontName='Helvetica',
         leftIndent=12,
-        spaceAfter=4,
         bulletIndent=6,
-        textColor=colors.HexColor('#34495e'),
-        fontName='Helvetica'
-    )
-    
-    # Footer style
-    footer_style = ParagraphStyle(
-        'Footer',
-        parent=styles['Normal'],
-        fontSize=8,
-        alignment=2,
-        textColor=colors.HexColor('#7f8c8d'),
-        fontName='Helvetica-Oblique'
+        spaceAfter=4
     )
     
     # ======================
     # HEADER SECTION
     # ======================
-    
-    # Create header table with logo and school info
-   # Corrected header section code:
-header_table_data = []
-
-# Add logo if exists
-if os.path.exists(logo_path):
-    logo = Image(logo_path, width=1.5*inch, height=1.5*inch)
-    logo.hAlign = 'LEFT'
-    header_table_data.append([logo, ""])
-else:
-    header_table_data.append(["", ""])
-
-# Create school information Paragraph objects first
-school_name = Paragraph("<b>SCHOOL NAME</b>", school_style)
-school_address = Paragraph("123 Education Street, Learning City", school_style)
-term_year = Paragraph(f"Term: {report_meta.get('term', '1')} | Year: {report_meta.get('year', str(datetime.now().year))}", school_style)
-class_info = Paragraph(f"Class: {report_meta.get('class', 'Grade')}", school_style)
-report_title = Paragraph("STUDENT PROGRESS REPORT", title_style)
-
-# Combine all elements with line breaks
-school_info_combined = [school_name, school_address, term_year, class_info, report_title]
-school_info_paragraph = Paragraph("<br/>".join([p.text for p in school_info_combined]), school_style)
-
-header_table_data.append(["", school_info_paragraph, ""])
-
-header_table = Table(header_table_data, colWidths=[1.5*inch, None, 1.5*inch])
-header_table.setStyle(TableStyle([
-    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
-    ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
-]))
-
-story.append(header_table)
-story.append(Spacer(1, 0.2*inch))
+    story.append(Paragraph("CODING PROGRESS REPORT FOR TERM ONE 2025", title_style))
     
     # ======================
     # STUDENT INFORMATION
     # ======================
+    student_info = [
+        [Paragraph("<b>NAME:</b>", student_style), Paragraph(student['name'], student_style)],
+        [Paragraph("<b>CLASS:</b>", student_style), Paragraph(report_meta.get('class', 'Grade 5'), student_style)],
+        [Paragraph("<b>SCORE:</b>", student_style), Paragraph(student['score'], student_style)],
+        [Paragraph("<b>REPORT DATE:</b>", student_style), Paragraph(datetime.now().strftime("%B %d, %Y"), student_style)]
+    ]
     
-student_info_table = Table([
-    [Paragraph("<b>Student Name:</b>", student_style), Paragraph(student['name'], student_style)],
-    [Paragraph("<b>Report Date:</b>", student_style), Paragraph(datetime.now().strftime("%B %d, %Y"), student_style)],
-    [Paragraph("<b>Score:</b>", student_style), Paragraph(student['score'], student_style)]
-], colWidths=[2*inch, 4*inch])
-
-student_info_table.setStyle(TableStyle([
-    ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-    ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
-]))
-
-story.append(student_info_table)
-story.append(Spacer(1, 0.3*inch))
-
-# ======================
-# REPORT CONTENT
-# ======================
-
-# What student learned
-story.append(Paragraph("✅ <b>What the student has learned and done well:</b>", section_style))
-if student['learned']:
+    student_table = Table(student_info, colWidths=[1.5*inch, 4*inch])
+    student_table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+    ]))
+    
+    story.append(student_table)
+    story.append(Spacer(1, 0.3*inch))
+    
+    # ======================
+    # RUBRIC TABLE
+    # ======================
+    # Create table header
+    rubric_header = [
+        Paragraph("<b>CATEGORY</b>", table_header_style),
+        Paragraph("<b>RATING</b>", table_header_style),
+        Paragraph("<b>COMMENTS</b>", table_header_style)
+    ]
+    
+    # Create table data - we'll convert learned/improvement to rubric format
+    rubric_data = [rubric_header]
+    
+    # Add learned items as positive achievements
     for item in student['learned']:
-        story.append(Paragraph(f"• {item}", bullet_style))
-else:
-    story.append(Paragraph("No specific achievements noted yet.", bullet_style))
-
-story.append(Spacer(1, 0.2*inch))
-
-# Areas for improvement
-story.append(Paragraph("❌ <b>Areas for improvement:</b>", section_style))
-if student['improvement']:
+        rubric_data.append([
+            Paragraph("Achievement", table_content_style),
+            Paragraph("✓", table_content_style),
+            Paragraph(item, table_content_style)
+        ])
+    
+    # Add improvement items as areas to work on
     for item in student['improvement']:
-        story.append(Paragraph(f"• {item}", bullet_style))
-else:
-    story.append(Paragraph("No specific improvement areas noted.", bullet_style))
+        rubric_data.append([
+            Paragraph("Area for Improvement", table_content_style),
+            Paragraph("✗", table_content_style),
+            Paragraph(item, table_content_style)
+        ])
+    
+    # Create and style table
+    rubric_table = Table(rubric_data, colWidths=[1.5*inch, 0.8*inch, 3.5*inch])
+    rubric_table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#f2f2f2')),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('ALIGN', (1, 0), (1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, -1), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 6),
+        ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+    ]))
+    
+    story.append(rubric_table)
+    story.append(Spacer(1, 0.3*inch))
+    
+    # ======================
+    # CONCEPTS COVERED
+    # ======================
+    story.append(Paragraph("<b>CONCEPTS COVERED THIS TERM:</b>", section_style))
+    
+    # This would be customized based on your curriculum
+    concepts = [
+        "Basic Python syntax",
+        "Variables and data types",
+        "Conditional statements",
+        "Loops",
+        "Functions",
+        "Basic data structures"
+    ]
+    
+    for concept in concepts:
+        story.append(Paragraph(f"• {concept}", bullet_style))
+    
+    story.append(Spacer(1, 0.5*inch))
+    
+    # ======================
+    # TEACHER SIGNATURE
+    # ======================
+    teacher_info = [
+        [Paragraph("<b>TEACHER:</b> [Teacher Name]", student_style), ""],
+        ["", Paragraph("<b>SIGNATURE:</b> _________________________", student_style)]
+    ]
+    
+    teacher_table = Table(teacher_info, colWidths=[3*inch, 3*inch])
+    teacher_table.setStyle(TableStyle([
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('ALIGN', (1, 1), (1, 1), 'RIGHT'),
+    ]))
+    
+    story.append(teacher_table)
+    
+    doc.build(story)
 
-# ======================
-# FOOTER
-# ======================
-
-story.append(Spacer(1, 0.5*inch))
-footer_text = f"Generated on {datetime.now().strftime('%Y-%m-%d %H:%M')} by Academic Progress System"
-story.append(Paragraph(footer_text, footer_style))
-
-doc.build(story)
-
-def generate_all_reports(text_file_path, logo_path, report_meta=None):
+def generate_coding_reports(text_file_path, report_meta=None):
     """
-    Generate PDF reports for all students in gen_reports folder
-    report_meta should contain: page_size, orientation, term, year, class
+    Generate coding progress PDF reports for all students
     """
     if report_meta is None:
         report_meta = {
-            'page_size': 'A4',
-            'orientation': 'portrait',
             'term': '1',
-            'year': str(datetime.now().year),
+            'year': '2025',
             'class': 'Grade 5'
         }
     
@@ -256,13 +256,13 @@ def generate_all_reports(text_file_path, logo_path, report_meta=None):
     students = parse_student_data(content)
     
     for student in students:
-        # Create a valid filename
-        filename = re.sub(r'[^\w\s-]', '', student['name']).strip().lower()
-        filename = re.sub(r'[-\s]+', '_', filename) + '_progress_report.pdf'
+        # Create a valid filename with proper .pdf extension
+        filename = f"Coding Progress Report - {student['name']} {report_meta['class']}.pdf"  # Added . before pdf
+        filename = re.sub(r'[^\w\s-]', '', filename).strip()
         full_path = os.path.join(output_folder, filename)
         
         print(f"Generating report for {student['name']}...")
-        create_student_report(student, full_path, logo_path, report_meta)
+        create_coding_report(student, full_path, report_meta)
         
         # Verify PDF was created
         if os.path.exists(full_path):
@@ -276,19 +276,14 @@ if __name__ == "__main__":
     # Configuration
     config = {
         'text_file_path': "Student_Progress_Report.txt",  # Your input file
-        'logo_path': "logo.png",  # Path to your logo image
         'report_meta': {
-            'page_size': 'A5',  # 'letter' or 'A4'
-            'orientation': 'portrait',  # 'portrait' or 'landscape'
             'term': '2',
             'year': '2025',
-            'class': 'Year 8'
+            'class': 'Year 8 Coding'
         }
     }
     
-    generate_all_reports(
+    generate_coding_reports(
         text_file_path=config['text_file_path'],
-        logo_path=config['logo_path'],
-        
         report_meta=config['report_meta']
     )
