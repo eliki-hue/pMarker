@@ -1,6 +1,6 @@
 import os
 from reportlab.lib.pagesizes import A4, portrait
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 from reportlab.lib.units import mm, inch
@@ -47,9 +47,9 @@ def parse_student_data(text_content):
     
     return students
 
-def create_coding_report(student, filename, report_meta):
+def create_coding_report(student, filename, logo_path, report_meta):
     """
-    Create a coding progress report PDF matching the music report format
+    Create a professional coding progress report PDF with centered logo
     """
     # Set page size to A4 portrait
     doc = SimpleDocTemplate(filename, pagesize=portrait(A4),
@@ -66,7 +66,7 @@ def create_coding_report(student, filename, report_meta):
         parent=styles['Heading1'],
         fontSize=16,
         alignment=1,
-        spaceAfter=12,
+        spaceAfter=6,
         textColor=colors.HexColor('#2c3e50'),
         fontName='Helvetica-Bold'
     )
@@ -123,10 +123,47 @@ def create_coding_report(student, filename, report_meta):
         spaceAfter=4
     )
     
+    # Sub-bullet style
+    sub_bullet_style = ParagraphStyle(
+        'SubBullet',
+        parent=styles['Normal'],
+        fontSize=9,
+        textColor=colors.black,
+        fontName='Helvetica',
+        leftIndent=24,
+        bulletIndent=12,
+        spaceAfter=2
+    )
+    
     # ======================
-    # HEADER SECTION
+    # CENTERED LOGO HEADER
     # ======================
-    story.append(Paragraph("CODING PROGRESS REPORT FOR TERM ONE 2025", title_style))
+    header_table_data = []
+    
+    # Create centered logo and title
+    if os.path.exists(logo_path):
+        logo = Image(logo_path, width=5*inch, height=1.4*inch)
+        logo.hAlign = 'CENTER'
+        header_table_data.append([logo])
+    
+    # Create header text
+    header_text = f"""
+    <b>CODING PROGRESS REPORT</b><br/>
+    Term {report_meta.get('term', '1')} {report_meta.get('year', '2025')}<br/>
+    {report_meta.get('school_name', 'SCHOOL NAME')}
+    """
+    
+    header_table_data.append([Paragraph(header_text, title_style)])
+    
+    header_table = Table(header_table_data, colWidths=['100%'])
+    header_table.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 6),
+    ]))
+    
+    story.append(header_table)
+    story.append(Spacer(1, 0.3*inch))
     
     # ======================
     # STUDENT INFORMATION
@@ -157,7 +194,7 @@ def create_coding_report(student, filename, report_meta):
         Paragraph("<b>COMMENTS</b>", table_header_style)
     ]
     
-    # Create table data - we'll convert learned/improvement to rubric format
+    # Create table data
     rubric_data = [rubric_header]
     
     # Add learned items as positive achievements
@@ -198,18 +235,19 @@ def create_coding_report(student, filename, report_meta):
     # ======================
     story.append(Paragraph("<b>CONCEPTS COVERED THIS TERM:</b>", section_style))
     
-    # This would be customized based on your curriculum
+    # Organized list of concepts covered
     concepts = [
-        "Basic Python syntax",
-        "Variables and data types",
-        "Conditional statements",
-        "Loops",
-        "Functions",
-        "Basic data structures"
+        "This term, Year 8 students made significant progress in web development. They used professional tools like VS Code to organize files and manage code efficiently. Students learned core HTML skills, including creating structured pages with headings, paragraphs, lists, and images, as well as formatting text and applying colors using RGB values. In CSS, they explored styling techniques such as inline, internal, and external stylesheets, and used classes and IDs for precise formatting."
+
+"The term culminated in a graded project where students cloned the Delani Studio website. This final task required them to apply all they had learned to replicate a professional layout, visually engaging web pages. The submitted projects were assessed and graded based on design accuracy, structure, and styling quality."
     ]
     
     for concept in concepts:
-        story.append(Paragraph(f"• {concept}", bullet_style))
+        if isinstance(concept, list):
+            for sub_concept in concept:
+                story.append(Paragraph(f"‣ {sub_concept}", sub_bullet_style))
+        else:
+            story.append(Paragraph(f"• {concept}", bullet_style))
     
     story.append(Spacer(1, 0.5*inch))
     
@@ -217,8 +255,8 @@ def create_coding_report(student, filename, report_meta):
     # TEACHER SIGNATURE
     # ======================
     teacher_info = [
-        [Paragraph("<b>TEACHER:</b> [Teacher Name]", student_style), ""],
-        ["", Paragraph("<b>SIGNATURE:</b> _________________________", student_style)]
+        [Paragraph(f"<b>TEACHER:</b> {report_meta.get('teacher_name', 'Teacher Name')}", student_style), ""],
+        # ["", Paragraph("<b>SIGNATURE:</b> _________________________", student_style)]
     ]
     
     teacher_table = Table(teacher_info, colWidths=[3*inch, 3*inch])
@@ -231,15 +269,17 @@ def create_coding_report(student, filename, report_meta):
     
     doc.build(story)
 
-def generate_coding_reports(text_file_path, report_meta=None):
+def generate_coding_reports(text_file_path, logo_path, report_meta=None):
     """
-    Generate coding progress PDF reports for all students
+    Generate coding progress PDF reports for all students with centered logo
     """
     if report_meta is None:
         report_meta = {
             'term': '1',
             'year': '2025',
-            'class': 'Grade 5'
+            'class': 'Grade 5',
+            'school_name': 'YOUR SCHOOL NAME',
+            'teacher_name': 'TEACHER NAME'
         }
     
     # Create gen_reports directory if it doesn't exist
@@ -256,13 +296,13 @@ def generate_coding_reports(text_file_path, report_meta=None):
     students = parse_student_data(content)
     
     for student in students:
-        # Create a valid filename with proper .pdf extension
-        filename = f"Coding Progress Report - {student['name']} {report_meta['class']}.pdf"  # Added . before pdf
+        # Create a valid filename
+        filename = f"Coding Progress Report - {student['name']} {report_meta['class']}.pdf"
         filename = re.sub(r'[^\w\s-]', '', filename).strip()
         full_path = os.path.join(output_folder, filename)
         
         print(f"Generating report for {student['name']}...")
-        create_coding_report(student, full_path, report_meta)
+        create_coding_report(student, full_path, logo_path, report_meta)
         
         # Verify PDF was created
         if os.path.exists(full_path):
@@ -273,17 +313,21 @@ def generate_coding_reports(text_file_path, report_meta=None):
     print(f"\nGenerated {len(students)} reports in '{output_folder}' folder.")
 
 if __name__ == "__main__":
-    # Configuration
+    # Configuration - UPDATE THESE VALUES
     config = {
-        'text_file_path': "Student_Progress_Report.txt",  # Your input file
+        'text_file_path': "Student_Progress_Report.txt",  # Your input text file
+        'logo_path': "school_logo.png",  # Path to your school logo
         'report_meta': {
             'term': '2',
             'year': '2025',
-            'class': 'Year 8 Coding'
+            'class': 'Year 8 Coding',
+            'school_name': 'MT KENYA ACADEMY',
+            'teacher_name': 'Mr. Kiragu'
         }
     }
     
     generate_coding_reports(
         text_file_path=config['text_file_path'],
+        logo_path=config['logo_path'],
         report_meta=config['report_meta']
     )
